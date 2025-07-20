@@ -14,7 +14,7 @@
 <body>
   <h1>Edit</h1>
   <p>"carapp/cars/<%=car._id %>/edit"</p>
-  <form action="carapp/cars/<%=car._id %>/editcar" method="PUT">
+  <form action="/carapp/cars/<%=car._id %>/editcar?_method=PUT" method="POST">
     <input type="text" name="name" placeholder="Car Name" value= "<%= car.name %> "required>
     <input type="text" name="description" placeholder="Description" value= "<%= car.description%>"required>
     <input type="text" name="image" placeholder="Image URL (optional)" value="<%car.image%>">

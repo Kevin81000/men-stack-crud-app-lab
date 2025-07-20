@@ -1,4 +1,5 @@
 const dotenv = require("dotenv");
+const methodOverride = require ("method-override")
 const result = dotenv.config();
 if (result.error) {
   console.error("Error loading .env file:", result.error);
@@ -15,7 +16,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json()); 
 app.set("view engine", "ejs");
-
+app.use(methodOverride("_method"));
 
 // Debug: Log MongoDB URI
 if (!process.env.MONGODB_URI) {
