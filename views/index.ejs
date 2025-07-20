@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car App</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    form { margin-bottom: 20px; }
+    input, button { margin: 5px; padding: 5px; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 10px 0; }
+    img { max-width: 100px; }
+  </style>
+</head>
+<body>
+  <h1>Car List</h1>
+  <form action="/carapp/cars" method="POST">
+    <input type="text" name="name" placeholder="Car Name" required>
+    <input type="text" name="description" placeholder="Description" required>
+    <input type="text" name="image" placeholder="Image URL (optional)">
+    <button type="submit">Add Car</button>
+  </form>
+  <h2>Cars</h2>
+  <% if (cars.length === 0) { %>
+    <p>No cars found.</p>
+  <% } else { %>
+    <ul>
+      <% cars.forEach(car => { %>
+        <li>
+          <strong><%= car.name %></strong>: <%= car.description %>
+          <% if (car.image) { %>
+            <img src="<%= car.image %>" alt="<%= car.name %>">
+          <% } %>
+          <a href="/carapp/cars/<%= car._id %>/edit">Edit</a>
+          <form action="/carapp/cars/<%= car._id %>/delete" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>
